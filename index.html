@@ -1,0 +1,152 @@
+<!-- ✅ Updated Full HTML with the 4 new features -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday 90's aadapilla!</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- ✅ Google Font for handwritten letter -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <audio id="background-music" src="assets/audio/background.mp3" loop autoplay></audio>
+  <audio id="message-audio" src="assets/audio/message.mp3"></audio>
+
+  <!-- Floating Balloons/Hearts Animation -->
+  <div class="floating-decor">
+    <div class="balloon"></div>
+    <div class="balloon"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1 id="typed-heading"></h1>
+    <button id="surprise-btn">🎈 Click for Surprise (idhi nokku) !</button>
+  </section>
+
+  <!-- Photo Gallery -->
+  <section class="gallery" id="memories">
+    <h2>A Birthday Collection of you</h2>
+    <div class="gallery-grid">
+      <div class="card"><img src="assets/images/photo1.jpg" alt="Memory 1" /></div>
+      <div class="card"><img src="assets/images/photo2.jpg" alt="Memory 2" /></div>
+      <div class="card"><img src="assets/images/photo3.jpg" alt="Memory 3" /></div>
+      <div class="card"><img src="assets/images/photo4.jpg" alt="Memory 4" /></div>
+      <div class="card"><img src="assets/images/photo5.jpg" alt="Memory 5" /></div>
+      <div class="card"><img src="assets/images/photo6.jpg" alt="Memory 6" /></div>
+      <div class="card"><img src="assets/images/photo7.jpg" alt="Memory 7" /></div>
+      <div class="card"><img src="assets/images/photo8.jpg" alt="Memory 8" /></div>
+      <div class="card"><img src="assets/images/photo9.jpg" alt="Memory 9" /></div>
+      <div class="card"><img src="assets/images/photo10.jpg" alt="Memory 10" /></div>
+    </div>
+  </section>
+
+  <!-- Letter Section -->
+  <section class="letter">
+    <h2>A Letter Just for You (kalakandam)</h2>
+    <p>click the button below to hear the letter</p>
+    <button id="play-message">▶️ Play My Message to hear the letter</button>
+    <p id="letter-text">
+      Hello Likki,<br>
+      Once again wish you many many more happy returns of the day ☺️💗✨🤞 <br>
+      <br>
+      May be this is your 2nd bday manam frnds ayina tharvatha.<br>
+      But this 1 and half or 2 years inbetween gap lo ne you become one among closest people for me.<br>
+      May be manam maatladukundhi thakkuve avvachu kaani share cheskunna vishyaalu chaala vunnai 😄<br>
+      <br>
+      This was all a coincidence or something that nuvvu insta create cheyyadam nen text cheyyadam close avvadam but anyway it meant to a good bond between us.<br>
+      <br>
+      One last thing I wanna say is that I hope our friendship lasts till the end and thanks for being a good part of my life 🙃🙃<br>
+      – by [Chavanoprash 🚶]
+    </p>
+  </section>
+
+  <!-- Candle Cake Surprise -->
+  <section class="surprise">
+    <h2>Make a Wish 🎂</h2>
+    <div class="cake-wrapper">
+      <div class="cake-overlay">
+        <img src="assets/images/cake.png" id="cake" alt="Birthday Cake" />
+        <div id="candle-flame"></div>
+      </div>
+      <p>click the button below to light the candle-flame</p>
+      <button id="light-candle">🕯️ Light the Candle and Make a Wish</button>
+    </div>
+    <!-- ✅ Make a Wish Text Overlay -->
+    <div id="wish-text" class="hidden">🎁 Make a wish, Likitha ✨</div>
+  </section>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confetti"></canvas>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Made with ❤️ by Sai for 90's aadapilla</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const stars = [];
+      const colors = ["#ff69b4", "#ffc0cb", "#ff6ec7", "#f8a1d1"]; // pink shades
+
+      function createStar(x, y) {
+        const star = document.createElement("div");
+        star.className = "cursor-star";
+        star.style.left = x + "px";
+        star.style.top = y + "px";
+        star.style.color = colors[Math.floor(Math.random() * colors.length)];
+        document.body.appendChild(star);
+        stars.push(star);
+        setTimeout(() => {
+          star.remove();
+          stars.shift();
+        }, 1200);
+      }
+
+      document.addEventListener("mousemove", (e) => {
+        createStar(e.pageX, e.pageY);
+      });
+    });
+  </script>
+
+  <style>
+    .cursor-star {
+      position: absolute;
+      font-size: 18px;
+      pointer-events: none;
+      user-select: none;
+      transform: translate(-50%, -50%) scale(1);
+      animation: sparkle-fade 1.2s ease-out forwards;
+      z-index: 9999;
+    }
+
+    .cursor-star::before {
+      content: "✦";
+    }
+
+    @keyframes sparkle-fade {
+      0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+      }
+      50% {
+        opacity: 0.8;
+        transform: translate(-50%, -60%) scale(1.4) rotate(30deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -80%) scale(0.5) rotate(60deg);
+      }
+    }
+  </style>
+  <div class="page-transition"></div>
+
+
+</body>
+</html>
