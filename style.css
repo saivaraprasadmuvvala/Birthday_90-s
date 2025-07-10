@@ -517,6 +517,7 @@ button:active {
   .cake-overlay {
     width: 150px;
   }
+}
 /* For smaller screens */
 @media (max-width: 768px) {
   #candle-flame {
