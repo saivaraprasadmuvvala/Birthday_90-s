@@ -386,22 +386,25 @@ button:active {
 }
 
 #typed-heading {
-  font-size: 3.2rem;              /* Larger font */
-  font-weight: bold;              /* Make it clearer */
-  font-family: 'Caveat', cursive; /* Handwritten style */
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 4px solid #ff69b4; /* Brighter pink caret */
+  font-size: clamp(1.6rem, 7vw, 3.2rem);  
+  font-weight: bold;              
+  font-family: 'Caveat', cursive; 
+  white-space: normal;           
+  overflow-wrap: break-word;     
+  border-right: 4px solid #ff69b4; 
   animation: blink-caret 0.75s step-end infinite;
-  color: white;                 /* Vivid pink color */
+  color: white;                 
   text-align: center;
   margin: 30px 0;
+  padding: 0 1rem;
   text-shadow: 
     0 0 4px #ff69b4,
     0 0 8px #ff69b4,
     0 0 12px #ff69b4,
     0 0 16px #ff1493,
     0 0 20px #ff1493;
+  max-width: 95%;
+  line-height: 1.2;
 }
 
 @keyframes blink-caret {
