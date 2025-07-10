@@ -407,10 +407,29 @@ button:active {
   line-height: 1.2;
 }
 
+
 @keyframes blink-caret {
   from, to { border-color: transparent; }
   50% { border-color: #ff69b4; }
 }
+
+
+
+/* Gallery Images Initial State */
+.card img {
+  width: 100%;
+  display: block;
+  opacity: 0;
+  transform: translateY(30px) scale(0.9);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Revealed State with Animation */
+.card img.revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
 
 
 
@@ -420,7 +439,7 @@ button:active {
   .cake-overlay {
     width: 150px;
   }
-
+}
 
 
 /* Responsive tweak */
@@ -428,7 +447,7 @@ button:active {
   .cake-container {
     width: 150px;
   }
-
+}
 
 /* Responsive Styles for Mobile */
 @media (max-width: 768px) {
