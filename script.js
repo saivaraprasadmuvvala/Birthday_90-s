@@ -1,15 +1,13 @@
+// ==========================
+// Audio Controls
+// ==========================
+
 const bgMusic = document.getElementById('background-music');
 const messageAudio = document.getElementById('message-audio');
 const playMessageBtn = document.getElementById('play-message');
 
-// ✅ 1️⃣ Unlock autoplay on first user interaction only once
-function unlockAudio() {
-  if (bgMusic.paused) {
-    bgMusic.play().catch(err => console.log('Autoplay blocked:', err));
-  }
-  window.removeEventListener('click', unlockAudio);
-}
-window.addEventListener('click', unlockAudio);
+// ✅ 1️⃣ Remove page-wide autoplay unlock
+// Instead, play bg music only when surprise button is clicked!
 
 // ✅ 2️⃣ Toggle Play/Pause for message audio with button text/icon change
 playMessageBtn.addEventListener('click', (e) => {
@@ -33,19 +31,25 @@ messageAudio.addEventListener('ended', () => {
   playMessageBtn.textContent = '▶️ Play Voice Note';
 });
 
-// ✅ Candle lighting + wish text display
+// ==========================
+// Candle lighting + wish text
+// ==========================
 const lightCandleBtn = document.getElementById('light-candle');
 const candleFlame = document.getElementById('candle-flame');
 const wishText = document.getElementById('wish-text');
 
-lightCandleBtn.addEventListener('click', () => {
-  candleFlame.style.display = 'block';
-  if (wishText) {
-    wishText.style.display = 'block';
-  }
-});
+if (lightCandleBtn) {
+  lightCandleBtn.addEventListener('click', () => {
+    candleFlame.style.display = 'block';
+    if (wishText) {
+      wishText.style.display = 'block';
+    }
+  });
+}
 
-// ✅ Confetti on surprise button
+// ==========================
+// Confetti + Background Music + Images on Surprise
+// ==========================
 const surpriseBtn = document.getElementById('surprise-btn');
 const confettiCanvas = document.getElementById('confetti');
 const ctx = confettiCanvas.getContext('2d');
@@ -94,12 +98,33 @@ function updateConfetti() {
   });
 }
 
-surpriseBtn.addEventListener('click', () => {
-  createConfetti();
-  drawConfetti();
+// ✅ Also reveal images with animation one by one
+const galleryImages = document.querySelectorAll('.gallery-grid img');
+
+// Ensure all images start hidden
+galleryImages.forEach(img => {
+  img.classList.remove('revealed');
 });
 
-// ✨ Simple sparkle trail effect on cursor
+surpriseBtn.addEventListener('click', () => {
+  // 1. Play background music
+  bgMusic.play().catch(err => console.log('Autoplay blocked on surprise button:', err));
+
+  // 2. Confetti
+  createConfetti();
+  drawConfetti();
+
+  // 3. Reveal images with transition
+  galleryImages.forEach((img, index) => {
+    setTimeout(() => {
+      img.classList.add('revealed');
+    }, index * 1000);
+  });
+});
+
+// ==========================
+// Sparkle trail effect
+// ==========================
 document.addEventListener('mousemove', (e) => {
   const sparkle = document.createElement('div');
   sparkle.classList.add('sparkle');
@@ -112,7 +137,9 @@ document.addEventListener('mousemove', (e) => {
   }, 600);
 });
 
-// ✅ Typewriting Letter after 24s of voice message
+// ==========================
+// Typewriting Letter after 24s of voice message
+// ==========================
 function typeLetter(text, elementId, speed = 50) {
   let i = 0;
   const el = document.getElementById(elementId);
@@ -144,7 +171,9 @@ One last thing I wanna say is that I hope our friendship lasts till the end and 
   }
 });
 
-// ✅ PAGE TRANSITION HANDLER
+// ==========================
+// PAGE TRANSITION HANDLER
+// ==========================
 window.addEventListener('DOMContentLoaded', () => {
   const transitionEl = document.querySelector('.page-transition');
   if (transitionEl) {
@@ -168,7 +197,9 @@ document.querySelectorAll('a').forEach(link => {
   });
 });
 
-// ✅ Typed Heading on load
+// ==========================
+// Typed Heading on load
+// ==========================
 function typeText(element, text, speed = 100) {
   let i = 0;
   function type() {
